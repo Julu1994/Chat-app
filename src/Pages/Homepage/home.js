@@ -1,10 +1,10 @@
 import React from "react";
-import Chat from "../Chat/chat";
+import ChatPage from "../ChatPage/chatPage";
 
 const Home = () => {
     return (
         <div>
-            <Chat />
+            <ChatPage />
         </div>
     );
 };

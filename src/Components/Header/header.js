@@ -14,7 +14,7 @@ import { useHandler } from "../../context";
 const Header = () => {
     const toggleHandler = useHandler();
     return (
-        <AppBar position="static" sx={{ backgroundColor: "#8A2BE2" }}>
+        <AppBar position="static" sx={{ backgroundColor: "#003366" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon

@@ -1,13 +1,17 @@
 .list {
-    width: 25vw;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 25%;
     height: 100Vh;
-    background-color: blueviolet;
+    background-color: #003366;
 }
 
 .hideList {
+    position: absolute;
     width: 25vw;
     height: 100Vh;
-    background-color: blueviolet;
+    background-color: #003366;
     transform: translateX(-200vw);
     transition: 1.5s;
 }
