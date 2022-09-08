@@ -1,4 +1,4 @@
-import "./register.scss";
+import "./login.scss";
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -7,22 +7,16 @@ import Button from "@mui/material/Button";
 import { TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Register = () => {
+const Login = () => {
     return (
-        <div className="reg">
+        <div className="log">
             <Card sx={{ minWidth: 275 }}>
                 <Typography
                     variant="h5"
                     sx={{ textAlign: "center", mt: "1rem" }}>
-                    Register
+                    Login
                 </Typography>
                 <CardContent sx={{ textAlign: "center" }}>
-                    <TextField
-                        id="standard-basic"
-                        label="Name"
-                        variant="standard"
-                        sx={{ width: "100%", mt: "1rem" }}
-                    />
                     <TextField
                         id="standard-basic"
                         variant="standard"
@@ -44,14 +38,14 @@ const Register = () => {
                         color="secondary"
                         size="big"
                         sx={{ width: "100%", mt: "1rem" }}>
-                        Sign up
+                        Login
                     </Button>
                 </CardActions>
                 <p>
-                    Already have an account ?
+                    Don't have an account ?
                     <div>
-                        <Link to="/" style={{ textDecoration: "none" }}>
-                            Login here
+                        <Link to="/register" style={{ textDecoration: "none" }}>
+                            Register here
                         </Link>
                     </div>
                 </p>
@@ -59,4 +53,4 @@ const Register = () => {
         </div>
     );
 };
-export default Register;
+export default Login;

@@ -1,20 +1,16 @@
-.reg {
+.log {
     max-width: 20%;
     margin: 10rem auto 0 auto;
 }
 
-p {
-    text-align: center;
-}
-
 @media (max-width: 900px) {
-    .reg {
+    .log {
         max-width: 40%;
     }
 }
 
 @media (max-width: 600px) {
-    .reg {
+    .log {
         max-width: 75%;
     }
 }
