@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 const ToggleContext = React.createContext();
 const ToggleAction = React.createContext();
@@ -11,7 +11,14 @@ export const useHandler = () => {
 };
 
 export const Context = ({ children }) => {
+    const deviceWidth = window.innerWidth;
     const [toggle, setToggle] = React.useState(true);
+
+    useEffect(() => {
+        if (deviceWidth < 900) {
+            setToggle(false);
+        }
+    }, [deviceWidth]);
 
     const toggleHandler = () => {
         setToggle((value) => !value);
