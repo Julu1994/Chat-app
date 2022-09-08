@@ -1,0 +1,16 @@
+.reg {
+    max-width: 20%;
+    margin: 10rem auto 0 auto;
+}
+
+@media (max-width: 900px) {
+    .reg {
+        max-width: 40%;
+    }
+}
+
+@media (max-width: 600px) {
+    .reg {
+        max-width: 75%;
+    }
+}
