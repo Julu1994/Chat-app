@@ -1,0 +1,13 @@
+.list {
+    width: 25vw;
+    height: 100Vh;
+    background-color: blueviolet;
+}
+
+.hideList {
+    width: 25vw;
+    height: 100Vh;
+    background-color: blueviolet;
+    transform: translateX(-200vw);
+    transition: 1.5s;
+}

@@ -3,16 +3,21 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./Components/Header/header";
 import Login from "./Pages/Login/login";
 import Register from "./Pages/Register/register";
-
+import Home from "./Pages/Homepage/home";
+import { Context } from "./context";
 function App() {
     return (
-        <Router>
-            <Header />
-            <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-            </Routes>
-        </Router>
+        <Context>
+            <Router>
+                <Header />
+
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                </Routes>
+            </Router>
+        </Context>
     );
 }
 
