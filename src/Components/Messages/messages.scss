@@ -1,0 +1,11 @@
+.messages {
+    width: 40%;
+    margin-left: 1rem;
+
+    &-text {
+        width: 100%;
+        text-align: left;
+        padding: .8rem;
+        background-color: aliceblue;
+    }
+}

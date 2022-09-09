@@ -5,4 +5,13 @@
     width: 75%;
     height: 100vh;
     background-color: #83b7faae;
+
+    &-messages {
+        margin-top: 2rem;
+        margin-left: 1rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+    }
 }
