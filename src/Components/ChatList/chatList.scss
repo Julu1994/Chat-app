@@ -3,8 +3,9 @@
     left: 0;
     position: absolute;
     width: 25%;
-    height: 100Vh;
+    height: 90Vh;
     background-color: #003366;
+    z-index: 500;
 }
 
 .hideList {
@@ -65,5 +66,17 @@
             color: rgb(186, 185, 185);
 
         }
+    }
+}
+
+@media (max-width: 900px) {
+    .list {
+        width: 40%;
+    }
+}
+
+@media (max-width: 600px) {
+    .list {
+        width: 60%;
     }
 }

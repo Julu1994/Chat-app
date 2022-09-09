@@ -3,7 +3,7 @@
     left: 25%;
     position: absolute;
     width: 75%;
-    height: 100vh;
+    height: 90vh;
     background-color: #83b7faae;
 
     &-messages {
@@ -12,6 +12,44 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+
+
+    }
+
+    &-input {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 5rem;
+        background-color: rgb(255, 255, 255);
+
+        input {
+            margin: 1rem 0 0 1rem;
+            padding: .5rem;
+            width: 75%;
+            height: 2.5rem;
+            border: none;
+            outline: none;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .chat {
+        left: 0;
+        width: 100%;
+    }
+
+    .chat-input input {
+        width: 60%;
+
+    }
+}
+
+@media (max-width: 600px) {
+
+    .chat-input input {
+        width: 40%;
 
     }
 }
