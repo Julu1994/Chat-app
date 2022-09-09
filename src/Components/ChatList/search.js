@@ -12,7 +12,13 @@ const Search = () => {
                 placeholder={"Search people"}
                 color="warning"
                 inputProps={ariaLabel}
-                sx={{ width: "70%", textAlign: "center", color: "white" }}
+                sx={{
+                    width: "70%",
+                    textAlign: "center",
+                    color: "white",
+                    ml: ".2rem",
+                    pb: ".2rem",
+                }}
             />
         </div>
     );
