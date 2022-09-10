@@ -16,37 +16,44 @@ const Register = () => {
                     sx={{ textAlign: "center", mt: "1rem" }}>
                     Register
                 </Typography>
-                <CardContent sx={{ textAlign: "center" }}>
-                    <TextField
-                        id="standard-basic"
-                        label="Name"
-                        variant="standard"
-                        sx={{ width: "100%", mt: "1rem" }}
-                    />
-                    <TextField
-                        id="standard-basic"
-                        variant="standard"
-                        label="Email"
-                        sx={{ width: "100%", mt: "1rem" }}
-                    />
-                    <TextField
-                        id="standard-password-input"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                        variant="standard"
-                        sx={{ width: "100%", mt: "1rem" }}
-                    />
-                </CardContent>
-                <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        size="big"
-                        sx={{ width: "100%", mt: "1rem" }}>
-                        Sign up
-                    </Button>
-                </CardActions>
+                <form
+                    onSubmit={() => {
+                        alert("hi");
+                    }}>
+                    <CardContent sx={{ textAlign: "center" }}>
+                        <TextField
+                            id="standard-basic"
+                            label="Name"
+                            variant="standard"
+                            sx={{ width: "100%", mt: "1rem" }}
+                        />
+                        <TextField
+                            id="standard-basic"
+                            variant="standard"
+                            label="Email"
+                            sx={{ width: "100%", mt: "1rem" }}
+                        />
+                        <TextField
+                            id="standard-password-input"
+                            label="Password"
+                            type="password"
+                            autoComplete="current-password"
+                            variant="standard"
+                            sx={{ width: "100%", mt: "1rem" }}
+                        />
+                    </CardContent>
+                    <CardActions
+                        sx={{ display: "flex", justifyContent: "center" }}>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="secondary"
+                            size="big"
+                            sx={{ width: "100%", mt: "1rem" }}>
+                            Sign up
+                        </Button>
+                    </CardActions>
+                </form>
                 <p>
                     Already have an account ?
                     <div>

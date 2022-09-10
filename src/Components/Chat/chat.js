@@ -22,17 +22,19 @@ const Chat = () => {
     return (
         <ThemeProvider theme={theme}>
             <div className="chat">
-                <div className="chat-messages">
-                    <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
-                    <Messages />
-                </div>
-                <div className="chat-messages">
-                    <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
-                    <Messages />
-                </div>
-                <div className="chat-messages">
-                    <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
-                    <Messages />
+                <div className="chat-main">
+                    <div className="chat-messages">
+                        <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
+                        <Messages />
+                    </div>
+                    <div className="chat-messages">
+                        <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
+                        <Messages />
+                    </div>
+                    <div className="chat-messages">
+                        <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
+                        <Messages />
+                    </div>
                 </div>
                 <div className="chat-input">
                     <input type="text" placeholder="Write here" />
