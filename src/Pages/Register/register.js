@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { TextField, Typography } from "@mui/material";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, database } from "../../Firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -14,6 +14,7 @@ const Register = () => {
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const redirect = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -33,6 +34,7 @@ const Register = () => {
                 email,
             });
             toast.success("Successfully registered!");
+            redirect("/");
         } catch {
             toast.error("Something went wrong!");
         }
