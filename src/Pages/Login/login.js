@@ -5,42 +5,68 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { TextField, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../Firebase/auth";
 
 const Login = () => {
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const navigate = useNavigate();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            toast.success("Successful Login");
+            navigate("/");
+        } catch {
+            toast.error("Something went worng!");
+        }
+    };
     return (
         <div className="log">
             <Card sx={{ minWidth: 275 }}>
-                <Typography
-                    variant="h5"
-                    sx={{ textAlign: "center", mt: "1rem" }}>
-                    Login
-                </Typography>
-                <CardContent sx={{ textAlign: "center" }}>
-                    <TextField
-                        id="standard-basic"
-                        variant="standard"
-                        label="Email"
-                        sx={{ width: "100%", mt: "1rem" }}
-                    />
-                    <TextField
-                        id="standard-password-input"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                        variant="standard"
-                        sx={{ width: "100%", mt: "1rem" }}
-                    />
-                </CardContent>
-                <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        size="big"
-                        sx={{ width: "100%", mt: "1rem" }}>
+                <form onSubmit={handleSubmit}>
+                    <Typography
+                        variant="h5"
+                        sx={{ textAlign: "center", mt: "1rem" }}>
                         Login
-                    </Button>
-                </CardActions>
+                    </Typography>
+                    <CardContent sx={{ textAlign: "center" }}>
+                        <TextField
+                            id="standard-basic"
+                            variant="standard"
+                            label="Email"
+                            onChange={(event) => {
+                                setEmail(event.target.value);
+                            }}
+                            sx={{ width: "100%", mt: "1rem" }}
+                        />
+                        <TextField
+                            id="standard-password-input"
+                            label="Password"
+                            type="password"
+                            autoComplete="current-password"
+                            variant="standard"
+                            onChange={(event) => {
+                                setPassword(event.target.value);
+                            }}
+                            sx={{ width: "100%", mt: "1rem" }}
+                        />
+                    </CardContent>
+                    <CardActions
+                        sx={{ display: "flex", justifyContent: "center" }}>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            size="big"
+                            type="submit"
+                            sx={{ width: "100%", mt: "1rem" }}>
+                            Login
+                        </Button>
+                    </CardActions>
+                </form>
                 <p>
                     Don't have an account ?
                     <div>
