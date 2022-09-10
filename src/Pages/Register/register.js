@@ -33,6 +33,7 @@ const Register = () => {
                 name,
                 email,
             });
+            await setDoc(doc(database, "chat", createUser.user.uid), {});
             toast.success("Successfully registered!");
             redirect("/");
         } catch {

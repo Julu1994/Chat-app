@@ -4,24 +4,19 @@ import Header from "./Components/Header/header";
 import Login from "./Pages/Login/login";
 import Register from "./Pages/Register/register";
 import Home from "./Pages/Homepage/home";
-import { Context } from "./context";
-import { useAuth } from "./context";
+import { useFireauth } from "./context";
 
 function App() {
-    const userAuth = useAuth();
+    const userAuth = useFireauth();
     return (
-        <Context>
-            <Router>
-                <Header />
-
-                <Routes>
-                    <Route path="/" element={userAuth ? <Home /> : <Login />} />
-
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                </Routes>
-            </Router>
-        </Context>
+        <Router>
+            <Header />
+            <Routes>
+                <Route path="/" element={userAuth ? <Home /> : <Login />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+            </Routes>
+        </Router>
     );
 }
 

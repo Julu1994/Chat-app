@@ -12,35 +12,37 @@ export const useToggle = () => {
 export const useHandler = () => {
     return useContext(ToggleAction);
 };
-export const useAuth = () => {
+export const useFireauth = () => {
     return useContext(UserContext);
 };
 
 export const Context = ({ children }) => {
     const deviceWidth = window.innerWidth;
     const [toggle, setToggle] = React.useState(true);
-    const [currentUser, setCurrentUser] = React.useState({});
+    const [currentUser, setCurrentUser] = React.useState({ name: "jewel" });
 
     useEffect(() => {
         if (deviceWidth < 900) {
             setToggle(false);
         }
+    }, [deviceWidth]);
+
+    useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             setCurrentUser(user);
         });
-    }, [deviceWidth]);
+    }, []);
 
     const toggleHandler = () => {
         setToggle((value) => !value);
     };
-    console.log(currentUser, "the current user");
     return (
-        <UserContext.Provider value={currentUser}>
-            <ToggleContext.Provider value={toggle}>
-                <ToggleAction.Provider value={toggleHandler}>
+        <ToggleContext.Provider value={toggle}>
+            <ToggleAction.Provider value={toggleHandler}>
+                <UserContext.Provider value={currentUser}>
                     {children}
-                </ToggleAction.Provider>
-            </ToggleContext.Provider>
-        </UserContext.Provider>
+                </UserContext.Provider>
+            </ToggleAction.Provider>
+        </ToggleContext.Provider>
     );
 };
