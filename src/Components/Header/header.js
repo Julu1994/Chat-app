@@ -9,10 +9,22 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useHandler } from "../../context";
-
+import { useFireauth, useHandler } from "../../context";
+import { Button } from "@mui/material";
+import { signOut } from "firebase/auth";
+import { auth } from "../../Firebase/auth";
+import toast from "react-hot-toast";
 const Header = () => {
     const toggleHandler = useHandler();
+    const userAuth = useFireauth();
+    const logout = () => {
+        try {
+            signOut(auth);
+            toast.success("Successfull Logout");
+        } catch {
+            toast.error("Something went wrong");
+        }
+    };
     return (
         <AppBar position="static" sx={{ backgroundColor: "#003366" }}>
             <Container maxWidth="xl">
@@ -75,11 +87,21 @@ const Header = () => {
                     </Typography>
                     <Box
                         sx={{
-                            flexGrow: 1,
+                            flexGrow: 2,
                             display: { xs: "none", md: "flex" },
                         }}></Box>
 
                     <Box sx={{ flexGrow: 0 }}>
+                        {userAuth && (
+                            <Button
+                                variant="contained"
+                                size="large"
+                                color="inherit"
+                                onClick={logout}
+                                sx={{ mr: "2rem", color: "#003366" }}>
+                                Logout
+                            </Button>
+                        )}
                         <Tooltip title="Open settings">
                             <IconButton sx={{ p: 0, mr: "2rem" }}>
                                 <Avatar alt="Avater" src="" />

@@ -18,7 +18,7 @@ const Login = () => {
         event.preventDefault();
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            toast.success("Successful Login");
+            toast.success("Successfull Login");
             navigate("/");
         } catch {
             toast.error("Something went worng!");

@@ -6,9 +6,15 @@ import { Avatar } from "@mui/material";
 
 const ChatList = () => {
     const toggle = useToggle();
+    const [findUser, setFindUser] = React.useState("");
+    const [user, setUser] = React.useState(null);
+    const handleChage = (event) => {
+        setFindUser(event.target.value);
+    };
+    console.log(findUser);
     return (
         <div className={toggle ? "list" : "hideList"}>
-            <Search />
+            <Search props={handleChage} />
             <div className="user">
                 <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
                 <div className="user-info">
