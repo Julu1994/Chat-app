@@ -3,7 +3,7 @@ import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Input } from "@mui/material";
 
-const Search = ({ props }) => {
+const Search = ({ onchange, onkeydown }) => {
     const ariaLabel = { "aria-label": "description" };
     return (
         <div className="search">
@@ -12,7 +12,8 @@ const Search = ({ props }) => {
                 placeholder={"Search people"}
                 color="warning"
                 inputProps={ariaLabel}
-                onChange={props}
+                onChange={onchange}
+                onKeyDown={onkeydown}
                 sx={{
                     width: "70%",
                     textAlign: "center",

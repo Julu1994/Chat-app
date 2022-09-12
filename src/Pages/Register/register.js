@@ -25,7 +25,7 @@ const Register = () => {
             );
             console.log(createUser.user);
             await updateProfile(createUser.user, {
-                name,
+                displayName: name,
             });
 
             await setDoc(doc(database, "users", createUser.user.uid), {
