@@ -9,6 +9,9 @@ import {
     getDoc,
     getDocs,
     query,
+    serverTimestamp,
+    setDoc,
+    updateDoc,
     where,
 } from "firebase/firestore";
 import { database } from "../../Firebase/auth";
@@ -50,14 +53,30 @@ const ChatList = () => {
         try {
             const docRef = doc(database, "messages", userIds);
             const userChat = await getDoc(docRef);
-            if (userChat.exists()) {
-                console.log("Document data:", userChat.data());
+            if (!userChat.exists()) {
+                await setDoc(doc(database, "messages", userIds), {
+                    text: [],
+                });
+                await updateDoc(doc(database, "chat", activeUser.uid), {
+                    [userIds + ".userDetails"]: {
+                        id: user.id,
+                        name: user.name,
+                    },
+                    [userIds + ".date"]: serverTimestamp(),
+                });
+                await updateDoc(doc(database, "chat", user.id), {
+                    [userIds + ".userDetails"]: {
+                        id: activeUser.uid,
+                        name: activeUser.displayName,
+                    },
+                    [userIds + ".date"]: serverTimestamp(),
+                });
             } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
-        } catch {
-            toast.error("Something went wrong!!");
+        } catch (err) {
+            toast.error("Something went wrong");
+            console.log(err);
         }
     };
 
