@@ -32,7 +32,9 @@ const ChatHistory = () => {
                     <div className="history" key={list[0]}>
                         <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
                         <div className="history-info">
-                            <p className="history-info-name">jewel</p>
+                            <p className="history-info-name">
+                                {list[1].userDetails.name}
+                            </p>
                             <p className="history-info-text">hello</p>
                         </div>
                     </div>
