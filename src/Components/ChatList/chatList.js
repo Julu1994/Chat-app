@@ -94,9 +94,6 @@ const ChatList = () => {
                 </div>
             )}
             <ChatHistory />
-            <ChatHistory />
-            <ChatHistory />
-            <ChatHistory />
         </div>
     );
 };
