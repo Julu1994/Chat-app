@@ -16,6 +16,7 @@ import {
 } from "firebase/firestore";
 import { database } from "../../Firebase/auth";
 import toast from "react-hot-toast";
+import ChatHistory from "./chatHistory";
 
 const ChatList = () => {
     const toggle = useToggle();
@@ -92,6 +93,10 @@ const ChatList = () => {
                     </div>
                 </div>
             )}
+            <ChatHistory />
+            <ChatHistory />
+            <ChatHistory />
+            <ChatHistory />
         </div>
     );
 };
