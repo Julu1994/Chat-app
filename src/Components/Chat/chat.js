@@ -16,6 +16,7 @@ import {
     arrayUnion,
     doc,
     onSnapshot,
+    serverTimestamp,
     Timestamp,
     updateDoc,
 } from "firebase/firestore";
@@ -94,8 +95,22 @@ const Chat = () => {
                     date: Timestamp.now(),
                 }),
             });
+
+            await updateDoc(doc(database, "chat", activeUser.uid), {
+                [info.chatId + ".lastText"]: {
+                    messages: input,
+                },
+                [info.chatId + ".date"]: serverTimestamp(),
+            });
+            await updateDoc(doc(database, "chat", info.user.id), {
+                [info.chatId + ".lastText"]: {
+                    messages: input,
+                },
+                [info.chatId + ".date"]: serverTimestamp(),
+            });
         }
-        alert(input);
+        setInput("");
+        setUrl(null);
     };
 
     return (

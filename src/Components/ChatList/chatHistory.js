@@ -47,7 +47,9 @@ const ChatHistory = () => {
                             <p className="history-info-name">
                                 {list[1].userDetails.name}
                             </p>
-                            <p className="history-info-text">hello</p>
+                            <p className="history-info-text">
+                                {list[1].lastText?.messages}
+                            </p>
                         </div>
                     </div>
                 );
