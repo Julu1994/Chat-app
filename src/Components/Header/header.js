@@ -9,7 +9,7 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useFireauth, useHandler } from "../../context";
+import { ChatContext, useFireauth, useHandler } from "../../context";
 import { Button } from "@mui/material";
 import { signOut } from "firebase/auth";
 import { auth } from "../../Firebase/auth";
@@ -17,6 +17,9 @@ import toast from "react-hot-toast";
 const Header = () => {
     const toggleHandler = useHandler();
     const userAuth = useFireauth();
+    const { info } = React.useContext(ChatContext);
+    console.log(info, "//");
+
     const logout = () => {
         try {
             signOut(auth);
@@ -90,6 +93,28 @@ const Header = () => {
                             flexGrow: 2,
                             display: { xs: "none", md: "flex" },
                         }}></Box>
+                    <Box
+                        sx={{
+                            flexGrow: 2,
+                            display: { xs: "none", md: "flex" },
+                        }}>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="a"
+                            href=""
+                            sx={{
+                                mr: 2,
+                                flexGrow: 3,
+                                fontFamily: "Arial",
+                                fontWeight: 700,
+                                letterSpacing: ".3rem",
+                                color: "inherit",
+                                textDecoration: "none",
+                            }}>
+                            {info.user.userDetails?.name}
+                        </Typography>
+                    </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
                         {userAuth && (

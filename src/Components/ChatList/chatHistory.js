@@ -4,11 +4,13 @@ import { Avatar } from "@mui/material";
 import { useEffect } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { database } from "../../Firebase/auth";
-import { useFireauth } from "../../context";
+import { ChatContext, useFireauth } from "../../context";
+import { useContext } from "react";
 
 const ChatHistory = () => {
     const [history, setHistory] = React.useState([]);
     const activeUser = useFireauth();
+    const { dispatch } = useContext(ChatContext);
 
     useEffect(() => {
         const getChatHistory = () => {
@@ -25,12 +27,22 @@ const ChatHistory = () => {
         activeUser.uid && getChatHistory();
     }, [activeUser.uid]);
     console.log(Object.entries(history), "the history...");
+
+    const handleSwitch = (user) => {
+        dispatch({ type: "SWITCH_USER", payload: user });
+    };
     return (
         <>
             {Object.entries(history)?.map((list) => {
                 return (
-                    <div className="history" key={list[0]}>
-                        <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
+                    <div
+                        className="history"
+                        key={list[0]}
+                        onClick={() => handleSwitch(list[1])}>
+                        <Avatar
+                            alt={list[1].userDetails.name}
+                            src="/static/images/avatar/1.jpg"
+                        />
                         <div className="history-info">
                             <p className="history-info-name">
                                 {list[1].userDetails.name}
