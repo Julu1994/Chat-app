@@ -111,9 +111,7 @@ const Header = () => {
                                 letterSpacing: ".3rem",
                                 color: "inherit",
                                 textDecoration: "none",
-                            }}>
-                            {info.user.userDetails?.name}
-                        </Typography>
+                            }}></Typography>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>

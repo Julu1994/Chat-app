@@ -11,14 +11,30 @@ import {
 import SendIcon from "@mui/icons-material/Send";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { useContext } from "react";
-import { ChatContext } from "../../context";
-import { doc, onSnapshot } from "firebase/firestore";
-import { database } from "../../Firebase/auth";
+import { ChatContext, useFireauth } from "../../context";
+import {
+    arrayUnion,
+    doc,
+    onSnapshot,
+    Timestamp,
+    updateDoc,
+} from "firebase/firestore";
+import { database, storage } from "../../Firebase/auth";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import toast from "react-hot-toast";
 
 const Chat = () => {
     const [messages, setMessages] = React.useState([]);
     const [input, setInput] = React.useState("");
-    const [file, setFile] = React.useState(null);
+    const [url, setUrl] = React.useState(null);
+    const { info } = useContext(ChatContext);
+    const uniqueId =
+        Math.floor(Math.random() * 500) *
+        Math.floor(Math.random() * 1000) *
+        Math.random();
+
+    console.log(info.chatId, "info.chatId");
+    const activeUser = useFireauth();
     const theme = createTheme({
         palette: {
             primary: {
@@ -26,7 +42,6 @@ const Chat = () => {
             },
         },
     });
-    const { info } = useContext(ChatContext);
 
     React.useEffect(() => {
         const docRef = doc(database, "messages", info.chatId);
@@ -38,8 +53,48 @@ const Chat = () => {
         };
     }, [info.chatId]);
 
-    const sendHandler = (event) => {
+    const fileHandler = (event) => {
+        const imgFile = event.target.files[0];
+        const imgRef = ref(storage, `Images/${uniqueId}`);
+        const uploadTask = uploadBytesResumable(imgRef, imgFile);
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                toast.success("Image upload is " + progress + "% done");
+            },
+            () => {
+                toast.error("Upload faild");
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setUrl(downloadURL);
+                });
+            }
+        );
+    };
+    const sendHandler = async (event) => {
         event.preventDefault();
+        if (url) {
+            await updateDoc(doc(database, "messages", info.chatId), {
+                text: arrayUnion({
+                    id: uniqueId,
+                    senderId: activeUser.uid,
+                    file: url,
+                    date: Timestamp.now(),
+                }),
+            });
+        } else {
+            await updateDoc(doc(database, "messages", info.chatId), {
+                text: arrayUnion({
+                    id: uniqueId,
+                    messages: input,
+                    senderId: activeUser.uid,
+                    date: Timestamp.now(),
+                }),
+            });
+        }
         alert(input);
     };
 
@@ -48,14 +103,14 @@ const Chat = () => {
             <div className="chat">
                 <div className="chat-main">
                     <div className="chat-messages">
-                        {messages.map((text) => {
+                        {messages?.map((text) => {
                             return (
                                 <div key={text.id}>
                                     <Avatar
-                                        alt={info.user.userDetails?.name}
+                                        alt="No name"
                                         src="/static/images/avatar/1.jpg"
                                     />
-                                    <Messages message={text} />
+                                    <Messages message={"hi"} />
                                 </div>
                             );
                         })}
@@ -76,9 +131,7 @@ const Chat = () => {
                                 hidden
                                 accept="image/*"
                                 type="file"
-                                onChange={(event) =>
-                                    setFile(event.target.files[0])
-                                }
+                                onChange={fileHandler}
                             />
                             <PhotoCamera />
                         </IconButton>

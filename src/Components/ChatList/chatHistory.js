@@ -38,7 +38,7 @@ const ChatHistory = () => {
                     <div
                         className="history"
                         key={list[0]}
-                        onClick={() => handleSwitch(list[1])}>
+                        onClick={() => handleSwitch(list[1].userDetails)}>
                         <Avatar
                             alt={list[1].userDetails.name}
                             src="/static/images/avatar/1.jpg"
