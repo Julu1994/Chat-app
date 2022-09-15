@@ -1,6 +1,5 @@
 import "./chat.scss";
 import React from "react";
-import Messages from "../Messages/messages";
 import {
     Avatar,
     Button,
@@ -112,54 +111,71 @@ const Chat = () => {
         setInput("");
         setUrl(null);
     };
-
+    console.log(messages, "*******");
     return (
         <ThemeProvider theme={theme}>
             <div className="chat">
                 <div className="chat-main">
-                    <div className="chat-messages">
-                        {messages?.map((text) => {
-                            return (
-                                <div key={text.id}>
-                                    <Avatar
-                                        alt="No name"
-                                        src="/static/images/avatar/1.jpg"
-                                    />
-                                    <Messages message={"hi"} />
-                                </div>
-                            );
-                        })}
+                    <div className="chat-list">
+                        {messages
+                            .filter((text) => text.senderId === info.user.id)
+                            .map((texts) => {
+                                return (
+                                    <div className="chat-messages">
+                                        <Avatar
+                                            alt={info.user.name}
+                                            src="/static/images/avatar/1.jpg"
+                                        />
+
+                                        <p className="chat-messages-text">
+                                            {texts.messages}
+                                        </p>
+                                    </div>
+                                );
+                            })}
+                        {messages
+                            .filter((text) => text.senderId === activeUser.uid)
+                            .map((texts) => {
+                                return (
+                                    <div className="chat-reply">
+                                        <p className="chat-reply-text">
+                                            {texts.messages}
+                                        </p>
+                                    </div>
+                                );
+                            })}
                     </div>
                 </div>
-                <div className="chat-input">
-                    <form onSubmit={sendHandler}>
+            </div>
+            <div className="chat-input">
+                <form onSubmit={sendHandler}>
+                    <input
+                        type="text"
+                        placeholder="Write here"
+                        onChange={(event) => setInput(event.target.value)}
+                        value={input}
+                    />
+                    <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label">
                         <input
-                            type="text"
-                            placeholder="Write here"
-                            onChange={(event) => setInput(event.target.value)}
+                            hidden
+                            accept="image/*"
+                            type="file"
+                            onChange={fileHandler}
                         />
-                        <IconButton
-                            color="primary"
-                            aria-label="upload picture"
-                            component="label">
-                            <input
-                                hidden
-                                accept="image/*"
-                                type="file"
-                                onChange={fileHandler}
-                            />
-                            <PhotoCamera />
-                        </IconButton>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="small"
-                            type="submit"
-                            endIcon={<SendIcon />}>
-                            Send
-                        </Button>
-                    </form>
-                </div>
+                        <PhotoCamera />
+                    </IconButton>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        type="submit"
+                        endIcon={<SendIcon />}>
+                        Send
+                    </Button>
+                </form>
             </div>
         </ThemeProvider>
     );

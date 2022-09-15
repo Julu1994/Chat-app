@@ -8,7 +8,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
-import AdbIcon from "@mui/icons-material/Adb";
 import { ChatContext, useFireauth, useHandler } from "../../context";
 import { Button } from "@mui/material";
 import { signOut } from "firebase/auth";
@@ -18,7 +17,6 @@ const Header = () => {
     const toggleHandler = useHandler();
     const userAuth = useFireauth();
     const { info } = React.useContext(ChatContext);
-    console.log(info, "//");
 
     const logout = () => {
         try {
@@ -29,29 +27,11 @@ const Header = () => {
         }
     };
     return (
-        <AppBar position="static" sx={{ backgroundColor: "#003366" }}>
+        <AppBar
+            position="absolute"
+            sx={{ backgroundColor: "#003366", boxShadow: "none" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon
-                        sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-                    />
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: "none", md: "flex" },
-                            fontFamily: "monospace",
-                            fontWeight: 700,
-                            letterSpacing: ".3rem",
-                            color: "white",
-                            textDecoration: "none",
-                        }}>
-                        My Chat
-                    </Typography>
-
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -67,27 +47,23 @@ const Header = () => {
                             <MenuIcon />
                         </IconButton>
                     </Box>
-
-                    <AdbIcon
-                        sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-                    />
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href=""
-                        sx={{
-                            mr: 2,
-                            display: { xs: "flex", md: "none" },
-                            flexGrow: 1,
-                            fontFamily: "monospace",
-                            fontWeight: 700,
-                            letterSpacing: ".3rem",
-                            color: "inherit",
-                            textDecoration: "none",
-                        }}>
-                        My Chat
-                    </Typography>
+                    <Box sx={{ flexGrow: 0 }}>
+                        {userAuth && (
+                            <Button
+                                variant="contained"
+                                size="small"
+                                color="inherit"
+                                onClick={logout}
+                                sx={{ mr: "2rem", color: "#003366" }}>
+                                Logout
+                            </Button>
+                        )}
+                        <Tooltip title="Open settings">
+                            <IconButton sx={{ p: 0, mr: "2rem" }}>
+                                <Avatar alt="Avater" src="" />
+                            </IconButton>
+                        </Tooltip>
+                    </Box>
                     <Box
                         sx={{
                             flexGrow: 2,
@@ -98,6 +74,7 @@ const Header = () => {
                             flexGrow: 2,
                             display: { xs: "none", md: "flex" },
                         }}>
+                        <Avatar alt="Avater" src="" sx={{ mr: ".8rem" }} />
                         <Typography
                             variant="h6"
                             noWrap
@@ -111,25 +88,9 @@ const Header = () => {
                                 letterSpacing: ".3rem",
                                 color: "inherit",
                                 textDecoration: "none",
-                            }}></Typography>
-                    </Box>
-
-                    <Box sx={{ flexGrow: 0 }}>
-                        {userAuth && (
-                            <Button
-                                variant="contained"
-                                size="large"
-                                color="inherit"
-                                onClick={logout}
-                                sx={{ mr: "2rem", color: "#003366" }}>
-                                Logout
-                            </Button>
-                        )}
-                        <Tooltip title="Open settings">
-                            <IconButton sx={{ p: 0, mr: "2rem" }}>
-                                <Avatar alt="Avater" src="" />
-                            </IconButton>
-                        </Tooltip>
+                            }}>
+                            {info.user.name}
+                        </Typography>
                     </Box>
                 </Toolbar>
             </Container>

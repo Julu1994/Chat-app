@@ -1,10 +1,10 @@
 .chat {
-    top: 0;
+    top: 4.1rem;
     left: 25%;
     position: absolute;
     width: 75%;
     height: 90vh;
-    background-color: #83b7faae;
+    background-color: rgba(185, 216, 250, 0.524);
     overflow: scroll;
 
     &-main {
@@ -12,6 +12,13 @@
         height: 100%;
         overflow: scroll;
     }
+
+    &-list {
+        margin: 0 auto;
+        width: 100%;
+        height: max-content;
+    }
+
 
     &-messages {
         margin-top: 2rem;
@@ -21,13 +28,41 @@
         align-items: center;
         overflow: scroll;
 
+        &-text {
+            max-width: 75%;
+            padding: 1rem;
+            margin-left: .5rem;
+            background-color: rgb(217, 255, 205);
+            border-radius: .7rem;
+        }
+
+
+    }
+
+    &-reply {
+        margin-top: 2rem;
+        margin-right: 1rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        overflow: scroll;
+
+        &-text {
+            margin-right: .5rem;
+            padding: 1rem;
+            background-color: rgb(201, 249, 255);
+            max-width: 75%;
+            border-radius: .7rem;
+        }
+
 
     }
 
     &-input {
         position: absolute;
+        right: 0;
         bottom: 0;
-        width: 100%;
+        width: 75%;
         height: 5rem;
         background-color: rgb(255, 255, 255);
 

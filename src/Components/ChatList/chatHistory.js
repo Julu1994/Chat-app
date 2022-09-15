@@ -33,27 +33,29 @@ const ChatHistory = () => {
     };
     return (
         <>
-            {Object.entries(history)?.map((list) => {
-                return (
-                    <div
-                        className="history"
-                        key={list[0]}
-                        onClick={() => handleSwitch(list[1].userDetails)}>
-                        <Avatar
-                            alt={list[1].userDetails.name}
-                            src="/static/images/avatar/1.jpg"
-                        />
-                        <div className="history-info">
-                            <p className="history-info-name">
-                                {list[1].userDetails.name}
-                            </p>
-                            <p className="history-info-text">
-                                {list[1].lastText?.messages}
-                            </p>
+            {Object.entries(history)
+                ?.sort((x, y) => y[1].date - x[1].date)
+                .map((list) => {
+                    return (
+                        <div
+                            className="history"
+                            key={list[0]}
+                            onClick={() => handleSwitch(list[1].userDetails)}>
+                            <Avatar
+                                alt={list[1].userDetails.name}
+                                src="/static/images/avatar/1.jpg"
+                            />
+                            <div className="history-info">
+                                <p className="history-info-name">
+                                    {list[1].userDetails.name}
+                                </p>
+                                <p className="history-info-text">
+                                    {list[1].lastText?.messages}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
         </>
     );
 };

@@ -89,7 +89,6 @@ const ChatList = () => {
                     <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
                     <div className="user-info">
                         <p className="user-info-name">{user.name}</p>
-                        <p className="user-info-text">hello</p>
                     </div>
                 </div>
             )}
