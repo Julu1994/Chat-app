@@ -17,6 +17,7 @@
         margin: 0 auto;
         width: 100%;
         height: max-content;
+        overflow: scroll;
     }
 
 
@@ -61,7 +62,7 @@
     &-input {
         position: absolute;
         right: 0;
-        bottom: 0;
+        bottom: -5rem;
         width: 75%;
         height: 5rem;
         background-color: rgb(255, 255, 255);

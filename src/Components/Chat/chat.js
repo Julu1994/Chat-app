@@ -117,33 +117,34 @@ const Chat = () => {
             <div className="chat">
                 <div className="chat-main">
                     <div className="chat-list">
-                        {messages
-                            .filter((text) => text.senderId === info.user.id)
-                            .map((texts) => {
-                                return (
-                                    <div className="chat-messages">
-                                        <Avatar
-                                            alt={info.user.name}
-                                            src="/static/images/avatar/1.jpg"
-                                        />
-
-                                        <p className="chat-messages-text">
+                        {messages.map((texts) => {
+                            return (
+                                <div>
+                                    <div
+                                        className={
+                                            texts.senderId === activeUser.uid
+                                                ? "chat-reply"
+                                                : "chat-messages"
+                                        }>
+                                        {texts.senderId !== activeUser.uid && (
+                                            <Avatar
+                                                alt={info.user.name}
+                                                src="/static/images/avatar/1.jpg"
+                                            />
+                                        )}
+                                        <p
+                                            className={
+                                                texts.senderId ===
+                                                activeUser.uid
+                                                    ? "chat-reply-text"
+                                                    : "chat-messages-text"
+                                            }>
                                             {texts.messages}
                                         </p>
                                     </div>
-                                );
-                            })}
-                        {messages
-                            .filter((text) => text.senderId === activeUser.uid)
-                            .map((texts) => {
-                                return (
-                                    <div className="chat-reply">
-                                        <p className="chat-reply-text">
-                                            {texts.messages}
-                                        </p>
-                                    </div>
-                                );
-                            })}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
