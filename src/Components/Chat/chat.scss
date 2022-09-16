@@ -3,7 +3,7 @@
     left: 25%;
     position: absolute;
     width: 75%;
-    height: 90vh;
+    height: 80vh;
     background-color: rgba(185, 216, 250, 0.524);
     overflow: scroll;
 
@@ -23,7 +23,7 @@
 
     &-messages {
         margin-top: 2rem;
-        margin-left: 1rem;
+        margin-left: 2rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -42,7 +42,7 @@
 
     &-reply {
         margin-top: 2rem;
-        margin-right: 1rem;
+        margin-right: 2rem;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -62,7 +62,7 @@
     &-input {
         position: absolute;
         right: 0;
-        bottom: -5rem;
+        bottom: 0;
         width: 75%;
         height: 5rem;
         background-color: rgb(255, 255, 255);

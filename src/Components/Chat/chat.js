@@ -80,6 +80,7 @@ const Chat = () => {
             await updateDoc(doc(database, "messages", info.chatId), {
                 text: arrayUnion({
                     id: uniqueId,
+                    messages: input,
                     senderId: activeUser.uid,
                     file: url,
                     date: Timestamp.now(),
@@ -132,15 +133,29 @@ const Chat = () => {
                                                 src="/static/images/avatar/1.jpg"
                                             />
                                         )}
-                                        <p
-                                            className={
-                                                texts.senderId ===
-                                                activeUser.uid
-                                                    ? "chat-reply-text"
-                                                    : "chat-messages-text"
-                                            }>
-                                            {texts.messages}
-                                        </p>
+                                        <div>
+                                            {texts.file && (
+                                                <img
+                                                    alt="TextPhoto"
+                                                    src={texts.file}
+                                                    style={{
+                                                        width: "10rem",
+                                                        height: "auto",
+                                                    }}
+                                                />
+                                            )}
+                                            {texts.messages && (
+                                                <p
+                                                    className={
+                                                        texts.senderId ===
+                                                        activeUser.uid
+                                                            ? "chat-reply-text"
+                                                            : "chat-messages-text"
+                                                    }>
+                                                    {texts.messages}
+                                                </p>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             );
