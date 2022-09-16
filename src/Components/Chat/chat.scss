@@ -1,7 +1,7 @@
 .chat {
     top: 3.5rem;
     left: 25%;
-    padding-bottom: 2rem;
+    padding-bottom: 4rem;
     position: absolute;
     width: 75%;
     height: 80vh;
@@ -88,10 +88,12 @@
     .chat {
         left: 0;
         width: 100%;
+        padding-top: 3rem;
     }
 
     .chat-input {
         width: 100%;
+        height: 3rem;
         left: 0;
         right: unset;
     }
@@ -113,4 +115,8 @@
         width: 60%;
 
     }
+}
+
+.chat-input input:active {
+    font-size: 16px;
 }
