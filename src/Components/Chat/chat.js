@@ -120,7 +120,7 @@ const Chat = () => {
             <div className="chat">
                 <div className="chat-main">
                     <div className="chat-list">
-                        {messages.map((texts) => {
+                        {messages?.map((texts) => {
                             return (
                                 <div>
                                     <div
