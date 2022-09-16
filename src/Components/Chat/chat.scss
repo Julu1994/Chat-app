@@ -1,6 +1,7 @@
 .chat {
-    top: 4.1rem;
+    top: 3.5rem;
     left: 25%;
+    padding-bottom: 2rem;
     position: absolute;
     width: 75%;
     height: 80vh;
@@ -30,7 +31,7 @@
         overflow: scroll;
 
         &-text {
-            max-width: 75%;
+            max-width: max-content;
             padding: 1rem;
             margin-left: .5rem;
             background-color: rgb(217, 255, 205);
@@ -52,7 +53,7 @@
             margin-right: .5rem;
             padding: 1rem;
             background-color: rgb(201, 249, 255);
-            max-width: 75%;
+            max-width: max-content;
             border-radius: .7rem;
         }
 
@@ -78,22 +79,38 @@
     }
 }
 
+.input-img {
+    width: 2rem;
+    height: 2rem;
+}
+
 @media (max-width: 900px) {
     .chat {
         left: 0;
         width: 100%;
     }
 
+    .chat-input {
+        width: 100%;
+        left: 0;
+        right: unset;
+    }
+
     .chat-input input {
-        width: 60%;
+        width: 80%;
 
     }
 }
 
 @media (max-width: 600px) {
+    .chat {
+        left: 0;
+        width: 100%;
+    }
 
     .chat-input input {
-        width: 40%;
+
+        width: 60%;
 
     }
 }

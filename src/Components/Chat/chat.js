@@ -2,6 +2,7 @@ import "./chat.scss";
 import React from "react";
 import {
     Avatar,
+    Badge,
     Button,
     createTheme,
     IconButton,
@@ -11,6 +12,7 @@ import SendIcon from "@mui/icons-material/Send";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { useContext } from "react";
 import { ChatContext, useFireauth } from "../../context";
+import { BsCardImage } from "react-icons/bs";
 import {
     arrayUnion,
     doc,
@@ -171,6 +173,15 @@ const Chat = () => {
                         onChange={(event) => setInput(event.target.value)}
                         value={input}
                     />
+                    {url && (
+                        <Badge
+                            sx={{ cursor: "pointer" }}
+                            badgeContent={"X"}
+                            color="secondary"
+                            onClick={() => setUrl(null)}>
+                            <BsCardImage size={20} />
+                        </Badge>
+                    )}
                     <IconButton
                         color="primary"
                         aria-label="upload picture"

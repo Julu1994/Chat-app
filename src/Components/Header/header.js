@@ -34,6 +34,10 @@ const Header = () => {
             toast.error("Something went wrong");
         }
     };
+    const deviceWidth = () => {
+        return window.innerWidth > 900;
+    };
+
     return (
         <AppBar
             position="absolute"
@@ -54,6 +58,32 @@ const Header = () => {
                             onClick={toggleHandler}>
                             <MenuIcon />
                         </IconButton>
+                    </Box>
+                    <Box
+                        sx={{
+                            flexGrow: 3,
+                            display: { xs: "flex", md: "none" },
+                        }}>
+                        {!deviceWidth() && (
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="a"
+                                href=""
+                                sx={{
+                                    mr: 2,
+                                    mt: ".3rem",
+                                    flexGrow: 0,
+                                    fontSize: ".9rem",
+                                    fontFamily: "Arial",
+                                    fontWeight: 300,
+                                    letterSpacing: ".1rem",
+                                    color: "inherit",
+                                    textDecoration: "none",
+                                }}>
+                                {info.user.name}
+                            </Typography>
+                        )}
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
                         {userAuth && (
@@ -101,7 +131,7 @@ const Header = () => {
                                         color: "inherit",
                                         textDecoration: "none",
                                     }}>
-                                    {userAuth.displayName}
+                                    {deviceWidth() && userAuth.displayName}
                                 </Typography>
                             </div>
                         )}
@@ -131,7 +161,7 @@ const Header = () => {
                             sx={{
                                 mr: 2,
                                 mt: ".3rem",
-                                flexGrow: 3,
+                                flexGrow: 0,
                                 fontFamily: "Arial",
                                 fontWeight: 700,
                                 letterSpacing: ".3rem",
