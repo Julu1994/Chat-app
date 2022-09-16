@@ -26,6 +26,11 @@ const Login = () => {
     };
     return (
         <div className="log">
+            <Typography
+                variant="h3"
+                sx={{ textAlign: "center", mb: "3rem", color: "#000080" }}>
+                MyChat
+            </Typography>
             <Card sx={{ minWidth: 275 }}>
                 <form onSubmit={handleSubmit}>
                     <Typography
@@ -59,15 +64,18 @@ const Login = () => {
                         sx={{ display: "flex", justifyContent: "center" }}>
                         <Button
                             variant="contained"
-                            color="secondary"
                             size="big"
                             type="submit"
-                            sx={{ width: "100%", mt: "1rem" }}>
+                            sx={{
+                                width: "100%",
+                                mt: "1rem",
+                                backgroundColor: "#000080",
+                            }}>
                             Login
                         </Button>
                     </CardActions>
                 </form>
-                <p>
+                <p style={{ fontSize: ".8rem", paddingBottom: "1rem" }}>
                     Don't have an account ?
                     <div>
                         <Link to="/register" style={{ textDecoration: "none" }}>

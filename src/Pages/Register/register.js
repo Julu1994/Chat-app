@@ -42,6 +42,11 @@ const Register = () => {
     };
     return (
         <div className="reg">
+            <Typography
+                variant="h3"
+                sx={{ textAlign: "center", mb: "3rem", color: "#000080" }}>
+                MyChat
+            </Typography>
             <Card sx={{ minWidth: 275 }}>
                 <Typography
                     variant="h5"
@@ -85,14 +90,17 @@ const Register = () => {
                         <Button
                             type="submit"
                             variant="contained"
-                            color="secondary"
                             size="big"
-                            sx={{ width: "100%", mt: "1rem" }}>
+                            sx={{
+                                width: "100%",
+                                mt: "1rem",
+                                backgroundColor: "#191970",
+                            }}>
                             Sign up
                         </Button>
                     </CardActions>
                 </form>
-                <p>
+                <p style={{ fontSize: ".8rem", paddingBottom: "1rem" }}>
                     Already have an account ?
                     <div>
                         <Link to="/" style={{ textDecoration: "none" }}>
