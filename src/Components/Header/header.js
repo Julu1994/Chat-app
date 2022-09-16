@@ -7,16 +7,24 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
 import { ChatContext, useFireauth, useHandler } from "../../context";
-import { Button } from "@mui/material";
+import { Menu, MenuItem } from "@mui/material";
 import { signOut } from "firebase/auth";
 import { auth } from "../../Firebase/auth";
 import toast from "react-hot-toast";
+import { AccountCircle } from "@mui/icons-material";
 const Header = () => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
     const toggleHandler = useHandler();
     const userAuth = useFireauth();
     const { info } = React.useContext(ChatContext);
+
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const logout = () => {
         try {
@@ -49,20 +57,54 @@ const Header = () => {
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
                         {userAuth && (
-                            <Button
-                                variant="contained"
-                                size="small"
-                                color="inherit"
-                                onClick={logout}
-                                sx={{ mr: "2rem", color: "#003366" }}>
-                                Logout
-                            </Button>
+                            <div>
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={handleMenu}
+                                    color="inherit">
+                                    <AccountCircle />
+                                </IconButton>
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                        vertical: "top",
+                                        horizontal: "right",
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: "top",
+                                        horizontal: "right",
+                                    }}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}>
+                                    <MenuItem onClick={handleClose}>
+                                        Profile
+                                    </MenuItem>
+                                    <MenuItem onClick={logout}>Logout</MenuItem>
+                                </Menu>
+                                <Typography
+                                    variant="h6"
+                                    noWrap
+                                    component="a"
+                                    href=""
+                                    sx={{
+                                        mr: 2,
+                                        fontSize: ".9rem",
+                                        flexGrow: 3,
+                                        fontFamily: "Arial",
+                                        fontWeight: 300,
+                                        letterSpacing: ".1rem",
+                                        color: "inherit",
+                                        textDecoration: "none",
+                                    }}>
+                                    {userAuth.displayName}
+                                </Typography>
+                            </div>
                         )}
-                        <Tooltip title="Open settings">
-                            <IconButton sx={{ p: 0, mr: "2rem" }}>
-                                <Avatar alt="Avater" src="" />
-                            </IconButton>
-                        </Tooltip>
                     </Box>
                     <Box
                         sx={{
@@ -74,7 +116,13 @@ const Header = () => {
                             flexGrow: 2,
                             display: { xs: "none", md: "flex" },
                         }}>
-                        <Avatar alt="Avater" src="" sx={{ mr: ".8rem" }} />
+                        {info.user.name && (
+                            <Avatar
+                                alt={info.user.name}
+                                src=""
+                                sx={{ mr: "1rem" }}
+                            />
+                        )}
                         <Typography
                             variant="h6"
                             noWrap
@@ -82,6 +130,7 @@ const Header = () => {
                             href=""
                             sx={{
                                 mr: 2,
+                                mt: ".3rem",
                                 flexGrow: 3,
                                 fontFamily: "Arial",
                                 fontWeight: 700,

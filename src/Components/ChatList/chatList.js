@@ -86,7 +86,7 @@ const ChatList = () => {
             <Search onchange={handleChage} onkeydown={handleKey} />
             {user && (
                 <div className="user" onClick={handleConnect}>
-                    <Avatar alt="Jewel" src="/static/images/avatar/1.jpg" />
+                    <Avatar alt={user.name} src="/static/images/avatar/1.jpg" />
                     <div className="user-info">
                         <p className="user-info-name">{user.name}</p>
                     </div>
