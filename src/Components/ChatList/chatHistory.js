@@ -4,13 +4,15 @@ import { Avatar } from "@mui/material";
 import { useEffect } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { database } from "../../Firebase/auth";
-import { ChatContext, useFireauth } from "../../context";
+import { ChatContext, useFireauth, useHandler } from "../../context";
 import { useContext } from "react";
 
 const ChatHistory = () => {
     const [history, setHistory] = React.useState([]);
     const activeUser = useFireauth();
     const { dispatch } = useContext(ChatContext);
+    const toggleHandler = useHandler();
+    const deviceWidth = window.innerWidth;
 
     useEffect(() => {
         const getChatHistory = () => {
@@ -30,6 +32,9 @@ const ChatHistory = () => {
 
     const handleSwitch = (user) => {
         dispatch({ type: "SWITCH_USER", payload: user });
+        if (deviceWidth < 900) {
+            toggleHandler();
+        }
     };
     return (
         <>

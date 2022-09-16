@@ -4,10 +4,10 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
+import { AiOutlineDoubleLeft } from "react-icons/ai";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import { ChatContext, useFireauth, useHandler } from "../../context";
+import { ChatContext, useFireauth, useHandler, useToggle } from "../../context";
 import { Menu, MenuItem } from "@mui/material";
 import { signOut } from "firebase/auth";
 import { auth } from "../../Firebase/auth";
@@ -16,8 +16,10 @@ import { AccountCircle } from "@mui/icons-material";
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const toggleHandler = useHandler();
+    const toggle = useToggle();
     const userAuth = useFireauth();
     const { info } = React.useContext(ChatContext);
+    console.log(toggleHandler(), "toggle");
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -49,15 +51,17 @@ const Header = () => {
                             flexGrow: 1,
                             display: { xs: "flex", md: "none" },
                         }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            color="inherit"
-                            onClick={toggleHandler}>
-                            <MenuIcon />
-                        </IconButton>
+                        {!toggle && (
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                color="inherit"
+                                onClick={toggleHandler}>
+                                <AiOutlineDoubleLeft />
+                            </IconButton>
+                        )}
                     </Box>
                     <Box
                         sx={{

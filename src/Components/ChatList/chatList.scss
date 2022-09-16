@@ -15,7 +15,8 @@
     height: 100Vh;
     background-color: #003366;
     transform: translateX(-200vw);
-    transition: 1.5s;
+    z-index: 600;
+    transition: 1.2s;
 }
 
 .user {
@@ -73,12 +74,7 @@
 
 @media (max-width: 900px) {
     .list {
-        width: 40%;
-    }
-}
-
-@media (max-width: 600px) {
-    .list {
-        width: 60%;
+        width: 100%;
+        height: 100vh;
     }
 }

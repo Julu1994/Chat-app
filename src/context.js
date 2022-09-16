@@ -22,15 +22,15 @@ export const useFireauth = () => {
 // };
 
 export const Context = ({ children }) => {
-    const deviceWidth = window.innerWidth;
+    //const deviceWidth = window.innerWidth;
     const [toggle, setToggle] = React.useState(true);
     const [currentUser, setCurrentUser] = React.useState({ name: "jewel" });
 
-    useEffect(() => {
-        if (deviceWidth < 900) {
-            setToggle(false);
-        }
-    }, [deviceWidth]);
+    // useEffect(() => {
+    //     if (deviceWidth < 900) {
+    //         setToggle(false);
+    //     }
+    // }, [deviceWidth]);
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
