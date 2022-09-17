@@ -80,6 +80,7 @@ const ChatList = () => {
             console.log(err);
         }
     };
+    console.log(toggle, "the toggle from context ..//..");
 
     return (
         <div className={toggle ? "list" : "hideList"}>
