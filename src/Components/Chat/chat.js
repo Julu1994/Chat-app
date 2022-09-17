@@ -1,5 +1,5 @@
 import "./chat.scss";
-import React, { useRef } from "react";
+import React from "react";
 import {
     Avatar,
     Badge,
@@ -23,7 +23,7 @@ import {
     updateDoc,
 } from "firebase/firestore";
 import { database, storage } from "../../Firebase/auth";
-import { getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import toast from "react-hot-toast";
 
 const Chat = () => {
@@ -31,7 +31,6 @@ const Chat = () => {
     const [input, setInput] = React.useState("");
     const [url, setUrl] = React.useState(null);
     const { info } = useContext(ChatContext);
-    const ref = useRef();
 
     const uniqueId =
         Math.floor(Math.random() * 500) *
@@ -117,9 +116,6 @@ const Chat = () => {
         setInput("");
         setUrl(null);
     };
-    React.useEffect(() => {
-        ref.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -128,7 +124,7 @@ const Chat = () => {
                     <div className="chat-list">
                         {messages?.map((texts) => {
                             return (
-                                <div ref={ref} key={texts.id}>
+                                <div key={texts.id}>
                                     <div
                                         className={
                                             texts.senderId === activeUser.uid
