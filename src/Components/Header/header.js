@@ -68,7 +68,7 @@ const Header = () => {
                             flexGrow: 3,
                             display: { xs: "flex", md: "none" },
                         }}>
-                        {!deviceWidth() && (
+                        {window.innerWidth > 900 && (
                             <Typography
                                 variant="h6"
                                 noWrap

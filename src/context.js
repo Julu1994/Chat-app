@@ -17,20 +17,10 @@ export const useHandler = () => {
 export const useFireauth = () => {
     return useContext(UserContext);
 };
-// export const useChat = () => {
-//     return useContext(ChatContext);
-// };
 
 export const Context = ({ children }) => {
-    //const deviceWidth = window.innerWidth;
     const [toggle, setToggle] = React.useState(true);
     const [currentUser, setCurrentUser] = React.useState({ name: "jewel" });
-
-    // useEffect(() => {
-    //     if (deviceWidth < 900) {
-    //         setToggle(false);
-    //     }
-    // }, [deviceWidth]);
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
