@@ -83,7 +83,7 @@ const ChatList = () => {
     console.log(toggle, "the toggle from context ..//..");
 
     return (
-        <div className={toggle ? "list" : "hideList"}>
+        <div className={"list"}>
             <Search onchange={handleChage} onkeydown={handleKey} />
             {user && (
                 <div className="user" onClick={handleConnect}>
