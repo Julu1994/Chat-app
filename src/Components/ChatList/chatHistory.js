@@ -11,7 +11,7 @@ const ChatHistory = () => {
     const [history, setHistory] = React.useState([]);
     const activeUser = useFireauth();
     const { dispatch } = useContext(ChatContext);
-    const toggleHandler = useHandler();
+    //const toggleHandler = useHandler();
 
     useEffect(() => {
         const getChatHistory = () => {
