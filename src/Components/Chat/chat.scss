@@ -1,10 +1,11 @@
 .chat {
-    top: 3.5rem;
+    top: 5vh;
     left: 25%;
-    padding-bottom: 4rem;
+    padding-bottom: 4vh;
     position: absolute;
     width: 75%;
-    height: 80vh;
+    height: 85vh;
+    padding-top: 4vh;
     background-color: rgba(185, 216, 250, 0.524);
     overflow: scroll;
 
@@ -43,14 +44,13 @@
 
     &-reply {
         margin-top: 2rem;
-        margin-right: 2rem;
+        margin-right: 1rem;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         overflow: scroll;
 
         &-text {
-            margin-right: .5rem;
             padding: 1rem;
             background-color: rgb(201, 249, 255);
             max-width: max-content;
@@ -65,7 +65,7 @@
         right: 0;
         bottom: 0;
         width: 75%;
-        height: 5rem;
+        height: 10vh;
         background-color: rgb(255, 255, 255);
 
         input {

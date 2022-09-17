@@ -1,5 +1,5 @@
 import "./chat.scss";
-import React from "react";
+import React, { useRef } from "react";
 import {
     Avatar,
     Badge,
@@ -7,6 +7,7 @@ import {
     createTheme,
     IconButton,
     ThemeProvider,
+    Typography,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
@@ -22,7 +23,7 @@ import {
     updateDoc,
 } from "firebase/firestore";
 import { database, storage } from "../../Firebase/auth";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import toast from "react-hot-toast";
 
 const Chat = () => {
@@ -30,6 +31,8 @@ const Chat = () => {
     const [input, setInput] = React.useState("");
     const [url, setUrl] = React.useState(null);
     const { info } = useContext(ChatContext);
+    const ref = useRef();
+
     const uniqueId =
         Math.floor(Math.random() * 500) *
         Math.floor(Math.random() * 1000) *
@@ -114,7 +117,10 @@ const Chat = () => {
         setInput("");
         setUrl(null);
     };
-    console.log(messages, "*******");
+    React.useEffect(() => {
+        ref.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
+
     return (
         <ThemeProvider theme={theme}>
             <div className="chat">
@@ -122,7 +128,7 @@ const Chat = () => {
                     <div className="chat-list">
                         {messages?.map((texts) => {
                             return (
-                                <div>
+                                <div ref={ref} key={texts.id}>
                                     <div
                                         className={
                                             texts.senderId === activeUser.uid
@@ -147,15 +153,27 @@ const Chat = () => {
                                                 />
                                             )}
                                             {texts.messages && (
-                                                <p
-                                                    className={
-                                                        texts.senderId ===
-                                                        activeUser.uid
-                                                            ? "chat-reply-text"
-                                                            : "chat-messages-text"
-                                                    }>
-                                                    {texts.messages}
-                                                </p>
+                                                <>
+                                                    <p
+                                                        className={
+                                                            texts.senderId ===
+                                                            activeUser.uid
+                                                                ? "chat-reply-text"
+                                                                : "chat-messages-text"
+                                                        }>
+                                                        {texts.messages}
+                                                    </p>
+                                                    <Typography
+                                                        sx={{
+                                                            ml: "0",
+                                                            textAlign: "center",
+                                                        }}
+                                                        variant="caption"
+                                                        display="block"
+                                                        gutterBottom>
+                                                        Just now
+                                                    </Typography>
+                                                </>
                                             )}
                                         </div>
                                     </div>
