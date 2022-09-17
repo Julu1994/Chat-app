@@ -12,7 +12,6 @@ const ChatHistory = () => {
     const activeUser = useFireauth();
     const { dispatch } = useContext(ChatContext);
     const toggleHandler = useHandler();
-    const deviceWidth = window.innerWidth;
 
     useEffect(() => {
         const getChatHistory = () => {
