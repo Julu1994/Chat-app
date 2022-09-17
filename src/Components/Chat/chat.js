@@ -117,9 +117,9 @@ const Chat = () => {
         setInput("");
         setUrl(null);
     };
-    React.useEffect(() => {
-        ref.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
+    // React.useEffect(() => {
+    //     ref.current?.scrollIntoView({ behavior: "smooth" });
+    // }, [messages]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -128,7 +128,7 @@ const Chat = () => {
                     <div className="chat-list">
                         {messages?.map((texts) => {
                             return (
-                                <div ref={ref} key={texts.id}>
+                                <div key={texts.id}>
                                     <div
                                         className={
                                             texts.senderId === activeUser.uid
