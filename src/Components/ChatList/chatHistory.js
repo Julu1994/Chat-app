@@ -4,7 +4,7 @@ import { Avatar } from "@mui/material";
 import { useEffect } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { database } from "../../Firebase/auth";
-import { ChatContext, useFireauth, useHandler } from "../../context";
+import { ChatContext, useFireauth } from "../../context";
 import { useContext } from "react";
 
 const ChatHistory = () => {
