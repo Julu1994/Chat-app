@@ -163,7 +163,7 @@ const Header = () => {
                                 mt: ".3rem",
                                 flexGrow: 0,
                                 fontFamily: "Arial",
-                                fontWeight: 700,
+                                fontWeight: 300,
                                 letterSpacing: ".3rem",
                                 color: "inherit",
                                 textDecoration: "none",
