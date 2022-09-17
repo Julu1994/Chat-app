@@ -31,8 +31,6 @@ const ChatHistory = () => {
 
     const handleSwitch = (user) => {
         dispatch({ type: "SWITCH_USER", payload: user });
-
-        toggleHandler();
     };
     return (
         <>
