@@ -57,8 +57,7 @@ const Header = () => {
                                 aria-label="account of current user"
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
-                                color="inherit"
-                                onClick={toggleHandler}>
+                                color="inherit">
                                 <AiOutlineDoubleLeft />
                             </IconButton>
                         )}
