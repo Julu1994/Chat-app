@@ -53,6 +53,7 @@ const Header = () => {
                         }}>
                         {!toggle && (
                             <IconButton
+                                onClick={toggleHandler}
                                 size="large"
                                 aria-label="account of current user"
                                 aria-controls="menu-appbar"

@@ -32,9 +32,8 @@ const ChatHistory = () => {
 
     const handleSwitch = (user) => {
         dispatch({ type: "SWITCH_USER", payload: user });
-        if (deviceWidth < 900) {
-            toggleHandler();
-        }
+
+        toggleHandler();
     };
     return (
         <>
