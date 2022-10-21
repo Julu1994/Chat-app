@@ -12,8 +12,7 @@ React, MUI, Firebase Auth, Firestore Database, Firestorage
 ## Demo
 
 Click the below link to see the live demo
-
-https://inventory-manager-jewel.netlify.app/
+https://mychat-dk.netlify.app/
 
 ## Documentation
 
