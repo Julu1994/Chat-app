@@ -47,7 +47,7 @@ const Header = () => {
                 <Toolbar disableGutters>
                     <Box
                         sx={{
-                            flexGrow: 1,
+                            flexGrow: 2,
                             display: { xs: "flex", md: "none" },
                         }}>
                         {!toggle && (
@@ -64,29 +64,27 @@ const Header = () => {
                     </Box>
                     <Box
                         sx={{
-                            flexGrow: 3,
+                            flexGrow: 2,
                             display: { xs: "flex", md: "none" },
                         }}>
-                        {window.innerWidth > 900 && (
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="a"
-                                href=""
-                                sx={{
-                                    mr: 2,
-                                    mt: ".3rem",
-                                    flexGrow: 0,
-                                    fontSize: ".9rem",
-                                    fontFamily: "Arial",
-                                    fontWeight: 300,
-                                    letterSpacing: ".1rem",
-                                    color: "inherit",
-                                    textDecoration: "none",
-                                }}>
-                                {info.user.name}
-                            </Typography>
-                        )}
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="a"
+                            href=""
+                            sx={{
+                                mr: 2,
+                                mt: ".3rem",
+                                flexGrow: 0,
+                                fontSize: ".9rem",
+                                fontFamily: "Arial",
+                                fontWeight: 300,
+                                letterSpacing: ".1rem",
+                                color: "inherit",
+                                textDecoration: "none",
+                            }}>
+                            {info.user.name}
+                        </Typography>
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
                         {userAuth && (
